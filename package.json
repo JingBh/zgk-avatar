@@ -1,0 +1,28 @@
+{
+  "name": "zgk-avatar",
+  "description": "清华附中中高考加油头像生成器",
+  "version": "2.0.0",
+  "license": "GPL-3.0-or-later",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview",
+    "lint": "eslint --ext \".js,.vue\" --ignore-path .gitignore ."
+  },
+  "dependencies": {
+    "bootstrap-vue": "^2.21.2",
+    "cropperjs": "^1.5.11",
+    "lodash": "^4.17.21",
+    "vue": "^2.6.12"
+  },
+  "devDependencies": {
+    "@nuxtjs/eslint-config": "^6.0.0",
+    "@types/lodash": "^4.14.169",
+    "@vitejs/plugin-legacy": "^1.4.0",
+    "eslint": "^7.26.0",
+    "sass": "^1.32.13",
+    "vite": "^2.3.3",
+    "vite-plugin-vue2": "^1.5.1"
+  }
+}
