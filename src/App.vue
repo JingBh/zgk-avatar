@@ -193,24 +193,24 @@ export default {
   data () {
     return {
       bgImages: [
-        '/images/bg/01.jpg', '/images/bg/02.jpg',
-        '/images/bg/03.jpg', '/images/bg/04.jpg',
-        '/images/bg/05.jpg', '/images/bg/06.jpg',
-        '/images/bg/07.jpg', '/images/bg/08.jpg',
-        '/images/bg/09.jpg', '/images/bg/10.jpg',
-        '/images/bg/11.jpg', '/images/bg/12.jpg',
-        '/images/bg/13.jpg'
+        '/assets/images/bg/01.jpg', '/assets/images/bg/02.jpg',
+        '/assets/images/bg/03.jpg', '/assets/images/bg/04.jpg',
+        '/assets/images/bg/05.jpg', '/assets/images/bg/06.jpg',
+        '/assets/images/bg/07.jpg', '/assets/images/bg/08.jpg',
+        '/assets/images/bg/09.jpg', '/assets/images/bg/10.jpg',
+        '/assets/images/bg/11.jpg', '/assets/images/bg/12.jpg',
+        '/assets/images/bg/13.jpg'
       ],
       fgImages: [
-        ['/images/fg/default.png', '清华附中'],
-        ['/images/fg/fly.png', '芜湖起飞'],
-        ['/images/fg/gan.png', '干就完了'],
-        ['/images/fg/aoligay.png', '奥利给'],
-        ['/images/fg/three.png', '再来三年']
+        ['/assets/images/fg/default.png', '清华附中'],
+        ['/assets/images/fg/fly.png', '芜湖起飞'],
+        ['/assets/images/fg/gan.png', '干就完了'],
+        ['/assets/images/fg/aoligay.png', '奥利给'],
+        ['/assets/images/fg/three.png', '再来三年']
       ],
       bgPreShow: false,
-      bgSrc: '/images/bg/default.jpg',
-      fgSrc: '/images/fg/default.png',
+      bgSrc: '/assets/images/bg/default.jpg',
+      fgSrc: '/assets/images/fg/default.png',
       cropper: null,
       croppingImage: '',
       croppingCallback: null,
@@ -231,8 +231,8 @@ export default {
     this.$bvModal.show('intro')
     if (localStorage) {
       try {
-        this.bgSrc = localStorage.getItem('bgSrc') || '/images/bg/default.jpg'
-        this.fgSrc = localStorage.getItem('fgSrc') || '/images/fg/default.png'
+        this.bgSrc = localStorage.getItem('bgSrc') || '/assets/images/bg/default.jpg'
+        this.fgSrc = localStorage.getItem('fgSrc') || '/assets/images/fg/default.png'
         this.bgBlur = Number(localStorage.getItem('bgBlur')) || 0
         this.darkFg = localStorage.getItem('darkFg') === 'true' || false
       } catch (e) {
