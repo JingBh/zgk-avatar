@@ -131,6 +131,9 @@
         <b-button v-if="customBgFile || bgSelect" variant="primary" @click="bgNext">
           使用此图片
         </b-button>
+        <b-button variant="info" @click="bgSkip">
+          跳过
+        </b-button>
         <b-button variant="secondary" @click="ok()">
           关闭
         </b-button>
@@ -202,15 +205,12 @@ export default {
         '/assets/images/bg/13.jpg'
       ],
       fgImages: [
-        ['/assets/images/fg/default.png', '清华附中'],
-        ['/assets/images/fg/fly.png', '芜湖起飞'],
-        ['/assets/images/fg/gan.png', '干就完了'],
-        ['/assets/images/fg/aoligay.png', '奥利给'],
-        ['/assets/images/fg/three.png', '再来三年']
+        ['/assets/images/fg/gaokao.png', '高考加油'],
+        ['/assets/images/fg/zhongkao.png', '中考加油']
       ],
       bgPreShow: false,
       bgSrc: '/assets/images/bg/default.jpg',
-      fgSrc: '/assets/images/fg/default.png',
+      fgSrc: '/assets/images/fg/gaokao.png',
       cropper: null,
       croppingImage: '',
       croppingCallback: null,
@@ -232,7 +232,7 @@ export default {
     if (localStorage) {
       try {
         this.bgSrc = localStorage.getItem('bgSrc') || '/assets/images/bg/default.jpg'
-        this.fgSrc = localStorage.getItem('fgSrc') || '/assets/images/fg/default.png'
+        this.fgSrc = localStorage.getItem('fgSrc') || '/assets/images/fg/gaokao.png'
         this.bgBlur = Number(localStorage.getItem('bgBlur')) || 0
         this.darkFg = localStorage.getItem('darkFg') === 'true' || false
       } catch (e) {
@@ -353,6 +353,10 @@ export default {
         this.$bvModal.hide('bg-select')
         this.select('bg', url)
       }
+    },
+    bgSkip () {
+      this.$bvModal.hide('bg-select')
+      this.$bvModal.show('fg-select')
     },
     onSelectBg (url) {
       if (url) {
