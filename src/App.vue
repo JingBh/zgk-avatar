@@ -25,7 +25,7 @@
             </b-button>
           </b-col>
         </b-row>
-        <b-card class="mb-3">
+        <b-card v-if="supportsCtxFilter" class="mb-3">
           <template #header>
             <h5 class="mb-0">
               参数设置
@@ -191,6 +191,7 @@
 <script>
 import Cropper from 'cropperjs'
 import { debounce } from 'lodash'
+import { detect } from 'detect-browser'
 
 export default {
   data () {
@@ -258,7 +259,8 @@ export default {
       bgSelect: '',
       downloadUrl: '',
       darkFg: false,
-      bgBlur: 0
+      bgBlur: 0,
+      supportsCtxFilter: false
     }
   },
   mounted () {
@@ -279,6 +281,10 @@ export default {
         localStorage.removeItem('bgSrc')
         localStorage.removeItem('fgSrc')
       }
+    }
+    const browserInfo = detect()
+    if (browserInfo.name !== 'ie' && browserInfo.name !== 'safari') {
+      this.supportsCtxFilter = true
     }
   },
   created () {

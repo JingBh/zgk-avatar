@@ -13,6 +13,7 @@
   "dependencies": {
     "bootstrap-vue": "^2.21.2",
     "cropperjs": "^1.5.11",
+    "detect-browser": "^5.2.0",
     "lodash": "^4.17.21",
     "vue": "^2.6.12"
   },
