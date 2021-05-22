@@ -3,7 +3,7 @@
     <b-row>
       <b-col md="6" lg="8" class="text-center mb-3">
         <b-overlay :show="loading" spinner-variant="primary">
-          <canvas id="canvas" width="2048" height="2048">
+          <canvas id="canvas" width="1024" height="1024">
             <strong>你的浏览器不支持 canvas，本应用将无法运行。</strong>
           </canvas>
           <div class="d-none">
@@ -305,7 +305,8 @@ export default {
         ctx.filter = 'blur(0px)'
         if (this.darkFg) { ctx.filter = 'invert(100%)' }
         const fgImage = document.getElementById('fg')
-        ctx.drawImage(fgImage, 256, 256, canvas.width - 512, canvas.height - 512)
+        const fgPadding = canvas.width / 8
+        ctx.drawImage(fgImage, fgPadding, fgPadding, canvas.width - fgPadding * 2, canvas.height - fgPadding * 2)
         ctx.filter = 'invert(0)'
         this.downloadUrl = canvas.toDataURL('image/jpeg')
         if (localStorage) {
