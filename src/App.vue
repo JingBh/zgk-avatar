@@ -294,7 +294,6 @@ export default {
     redraw () {
       try {
         const canvas = document.getElementById('canvas')
-        if (canvas.filters) { canvas.filters.enabled = true }
         const ctx = canvas.getContext('2d')
         ctx.fillStyle = '#eeeeee'
         ctx.clearRect(0, 0, canvas.width, canvas.height)
