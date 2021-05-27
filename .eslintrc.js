@@ -5,7 +5,14 @@ module.exports = {
     node: true
   },
   extends: [
-    '@nuxtjs/eslint-config',
-    '@nuxtjs/eslint-config-typescript'
-  ]
+    'standard',
+    'plugin:vue/recommended'
+  ],
+  plugins: [
+    '@typescript-eslint',
+    'vue'
+  ],
+  parserOptions: {
+    parser: '@typescript-eslint/parser'
+  }
 }
