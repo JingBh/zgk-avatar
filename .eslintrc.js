@@ -1,11 +1,10 @@
 module.exports = {
   root: true,
-  env: {
-    browser: true,
-    node: true
-  },
   extends: [
     '@nuxtjs/eslint-config',
     '@nuxtjs/eslint-config-typescript'
-  ]
+  ],
+  rules: {
+    'import/no-named-as-default': 'off'
+  }
 }
