@@ -71,9 +71,9 @@ export default class App extends Vue {
     const canvas = document.createElement('canvas')
     canvas.width = 1024
     canvas.height = 1024
-    const ctx = canvas.getContext('2d')
+    const ctx = canvas.getContext('2d')!
 
-    await new Promise((resolve) => {
+    await new Promise<void>((resolve) => {
       const background = new Image()
       background.crossOrigin = 'anonymous'
       background.onload = () => {
@@ -83,7 +83,7 @@ export default class App extends Vue {
       background.src = this.$accessor.background
     })
 
-    await new Promise((resolve) => {
+    await new Promise<void>((resolve) => {
       const foreground = new Image()
       foreground.crossOrigin = 'anonymous'
       foreground.onload = () => {
@@ -118,7 +118,6 @@ export default class App extends Vue {
     img {
       width: 100%;
       user-select: none;
-      position: absolute;
       top: 0;
       left: 0;
     }

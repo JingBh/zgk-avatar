@@ -1,6 +1,7 @@
 // noinspection JSUnusedGlobalSymbols
 
-// @ts-ignore
+export {}
+
 declare global {
   interface Window {
     _paq: string[][]

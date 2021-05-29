@@ -36,6 +36,7 @@ export default class ForegroundImage extends Vue {
 
 <style scoped>
   img {
+    position: absolute;
     transition: 0.5s;
     transition-property: width, height, margin, filter;
     z-index: 2;

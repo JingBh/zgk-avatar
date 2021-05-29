@@ -131,7 +131,7 @@ export default class SelectBackgroundModal extends Vue {
     const isSquare = Math.abs(this.cropperElement.width - this.cropperElement.height) < 2
     const onReady = () => {
       this.cropperElement.removeEventListener('ready', onReady)
-      this.cropper.reset()
+      this.cropper!.reset()
       if (isSquare) {
         this.cropFinish()
       }
@@ -151,7 +151,7 @@ export default class SelectBackgroundModal extends Vue {
   }
 
   cropFinish () {
-    const newImage = this.cropper?.getCroppedCanvas({
+    const newImage = this.cropper!.getCroppedCanvas({
       maxWidth: 1024,
       maxHeight: 1024
     }).toDataURL('image/jpeg')

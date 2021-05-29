@@ -26,6 +26,7 @@ export default class BackgroundImage extends Vue {
 
 <style scoped>
   img {
+    position: relative;
     z-index: 1;
   }
 </style>
