@@ -1,5 +1,8 @@
 // noinspection JSUnusedGlobalSymbols
 
-declare interface window {
-  _paq: any[]
+// @ts-ignore
+declare global {
+  interface Window {
+    _paq: string[][]
+  }
 }

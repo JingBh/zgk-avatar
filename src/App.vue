@@ -102,6 +102,7 @@ export default class App extends Vue {
     } else {
       saveAs(url, '头像.jpg')
     }
+    window._paq.push(['trackEvent', 'Download', 'Download'])
   }
 }
 </script>
