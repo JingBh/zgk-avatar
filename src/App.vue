@@ -20,19 +20,38 @@
             </b-button>
           </b-col>
         </b-row>
+        <settings class="mb-3" />
+        <b-button variant="primary" size="lg" block @click="download">
+          下载图片
+        </b-button>
       </b-col>
     </b-row>
     <welcome-modal />
     <select-background-modal />
+    <select-foreground-modal />
+    <b-modal
+      id="wechat-download"
+      title="下载图片"
+      ok-only
+      ok-title="关闭"
+      @hidden="downloadingImage = ''"
+    >
+      <p>检测到你可能在微信中使用该网页，而微信中无法进行一键下载。<strong>请长按下面的图片保存。</strong></p>
+      <b-img fluid :src="downloadingImage" />
+    </b-modal>
   </b-container>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
+import { saveAs } from 'file-saver'
 
+import { isWechat } from './libs/browsers'
 import BackgroundImage from './components/BackgroundImage.vue'
 import ForegroundImage from './components/ForegroundImage.vue'
 import SelectBackgroundModal from './components/SelectBackgroundModal.vue'
+import SelectForegroundModal from './components/SelectForegroundModal.vue'
+import Settings from './components/Settings.vue'
 import WelcomeModal from './components/WelcomeModal.vue'
 
 @Component({
@@ -40,11 +59,50 @@ import WelcomeModal from './components/WelcomeModal.vue'
     BackgroundImage,
     ForegroundImage,
     SelectBackgroundModal,
+    SelectForegroundModal,
+    Settings,
     WelcomeModal
   }
 })
 export default class App extends Vue {
+  downloadingImage = ''
 
+  async download () {
+    const canvas = document.createElement('canvas')
+    canvas.width = 1024
+    canvas.height = 1024
+    const ctx = canvas.getContext('2d')
+
+    await new Promise((resolve) => {
+      const background = new Image()
+      background.crossOrigin = 'anonymous'
+      background.onload = () => {
+        ctx.drawImage(background, 0, 0, 1024, 1024)
+        resolve()
+      }
+      background.src = this.$accessor.background
+    })
+
+    await new Promise((resolve) => {
+      const foreground = new Image()
+      foreground.crossOrigin = 'anonymous'
+      foreground.onload = () => {
+        const foregroundSize = 1024 * this.$accessor.foregroundSize / 100
+        const foregroundMargin = (1024 - foregroundSize) / 2
+        ctx.drawImage(foreground, foregroundMargin, foregroundMargin, foregroundSize, foregroundSize)
+        resolve()
+      }
+      foreground.src = this.$accessor.foreground
+    })
+
+    const url = canvas.toDataURL('image/jpeg')
+    if (isWechat()) {
+      this.downloadingImage = url
+      this.$bvModal.show('wechat-download')
+    } else {
+      saveAs(url, '头像.jpg')
+    }
+  }
 }
 </script>
 

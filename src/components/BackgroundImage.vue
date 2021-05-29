@@ -1,5 +1,10 @@
 <template>
-  <img class="rounded" :src="$accessor.background" :style="blurStyles">
+  <img
+    id="background"
+    class="rounded"
+    :src="$accessor.background"
+    :style="styles"
+  >
 </template>
 
 <script lang="ts">
@@ -11,7 +16,7 @@ export default class BackgroundImage extends Vue {
     return this.$accessor.backgroundBlur
   }
 
-  get blurStyles (): Record<string, string> {
+  get styles (): Record<string, string> {
     return {
       filter: `blur(${this.blur}px)`
     }

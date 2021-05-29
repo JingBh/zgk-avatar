@@ -9,6 +9,7 @@
       @click="select(option)"
     >
       <b-card-img-lazy
+        class="bg-dark"
         :src="getImage(option) + '?x-oss-process=style/thumbnail'"
         blank-width="512"
         blank-height="1024"
@@ -22,6 +23,7 @@
         <template v-if="getTitle(option)">
           {{ getTitle(option) }}
           <template v-if="isSelected(option)">
+            <br>
             (&check; 已选择)
           </template>
         </template>

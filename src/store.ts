@@ -5,9 +5,9 @@ import Vuex from 'vuex'
 import {
   useAccessor,
   getterTree,
-  mutationTree,
-  actionTree
+  mutationTree
 } from 'typed-vuex'
+import VuexPersistence from 'vuex-persist'
 
 import {
   getDefaultBackground,
@@ -24,14 +24,14 @@ declare module 'vue/types/vue' {
 Vue.use(Vuex)
 
 const state = () => ({
-  background: getDefaultBackground(),
-  backgroundBlur: 0,
+  background: getDefaultBackground() + '?x-oss-process=style/zoom',
   foregroundInfo: getDefaultForeground(),
-  foregroundSize: 70
+  foregroundSize: 70,
+  foregroundColor: 'white'
 })
 
 const getters = getterTree(state, {
-  foreground: (state): string => state.foregroundInfo[0],
+  foreground: (state): string => state.foregroundInfo[0] + '?x-oss-process=style/zoom_png',
   foregroundTitle: (state): string => state.foregroundInfo[1]
 })
 
@@ -41,22 +41,28 @@ const mutations = mutationTree(state, {
   },
   setForeground (state, imageInfo: [string, string]) {
     state.foregroundInfo = imageInfo
+  },
+  setForegroundSize (state, size: number) {
+    state.foregroundSize = size
   }
+  /* setForegroundColor (state, color: string) {
+    state.foregroundColor = color
+  } */
 })
 
-const actions = actionTree({
-  state,
-  getters,
-  mutations
-}, {
-
+const vuexLocal = new VuexPersistence<ReturnType<typeof state>>({
+  storage: window.localStorage,
+  reducer: state => ({
+    background: state.background,
+    foregroundInfo: state.foregroundInfo
+  })
 })
 
 const storePattern = {
   state,
   getters,
   mutations,
-  actions
+  plugins: [vuexLocal.plugin]
 }
 
 const store = new Vuex.Store(storePattern)

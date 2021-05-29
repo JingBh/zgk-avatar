@@ -1,5 +1,9 @@
 <template>
-  <img :src="image" :style="sizeStyles">
+  <img
+    id="foreground"
+    :src="image"
+    :style="styles"
+  >
 </template>
 
 <script lang="ts">
@@ -15,11 +19,16 @@ export default class ForegroundImage extends Vue {
     return this.$accessor.foregroundSize
   }
 
-  get sizeStyles (): Record<string, string> {
+  get color (): string {
+    return this.$accessor.foregroundColor
+  }
+
+  get styles (): Record<string, string> {
     const marginSize = (100 - this.size) / 2
     return {
       width: `${this.size}%`,
-      margin: `${marginSize}%`
+      margin: `${marginSize}%`,
+      filter: this.color === 'white' ? '' : 'invert(1)'
     }
   }
 }
@@ -27,6 +36,8 @@ export default class ForegroundImage extends Vue {
 
 <style scoped>
   img {
+    transition: 0.5s;
+    transition-property: width, height, margin, filter;
     z-index: 2;
   }
 </style>
