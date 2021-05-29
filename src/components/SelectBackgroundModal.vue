@@ -1,10 +1,5 @@
 <template>
-  <b-modal
-    id="select-background-modal"
-    title="请选择或上传背景图"
-    size="lg"
-    no-stacking
-  >
+  <b-modal id="select-background-modal" title="请选择或上传背景图" size="lg" no-stacking>
     <h4>
       预置背景图
       <b-button
@@ -18,18 +13,12 @@
         &#9660; 展开
       </b-button>
     </h4>
-    <b-collapse
-      id="select-background-presets"
-      v-model="presetsShown"
-    >
+    <b-collapse id="select-background-presets" v-model="presetsShown">
       <p class="text-muted">
         点击即可选择
       </p>
       <div style="overflow-y: scroll; max-height: 45vh">
-        <select-image
-          v-model="image"
-          :options="images"
-        />
+        <select-image v-model="image" :options="images" />
       </div>
     </b-collapse>
     <hr>
@@ -44,23 +33,13 @@
     />-->
 
     <template #modal-footer="{ ok }">
-      <b-button
-        v-if="image"
-        variant="primary"
-        @click="next"
-      >
+      <b-button v-if="image" variant="primary" @click="next">
         使用此图片
       </b-button>
-      <b-button
-        v-b-modal.select-foreground-modal
-        variant="info"
-      >
+      <b-button v-b-modal.select-foreground-modal variant="info">
         跳过
       </b-button>
-      <b-button
-        variant="secondary"
-        @click="ok()"
-      >
+      <b-button variant="secondary" @click="ok()">
         关闭
       </b-button>
     </template>

@@ -1,42 +1,21 @@
 <template>
-  <b-container
-    class="my-3 mt-md-5"
-    style="max-width: 55rem"
-  >
+  <b-container class="my-3 mt-md-5">
     <b-row align-h="center">
-      <b-col
-        cols="12"
-        sm="11"
-        md="7"
-        class="text-center mb-3"
-      >
+      <b-col cols="12" sm="11" md="7" class="text-center mb-3">
         <div id="image-container">
           <background-image />
           <foreground-image />
         </div>
       </b-col>
-      <b-col
-        cols="12"
-        sm="11"
-        md="5"
-        class="mb-3"
-      >
+      <b-col cols="12" sm="11" md="5" class="mb-3">
         <b-row>
           <b-col class="mb-3">
-            <b-button
-              v-b-modal.select-background-modal
-              variant="success"
-              block
-            >
+            <b-button v-b-modal.select-background-modal variant="success" block>
               更换背景
             </b-button>
           </b-col>
           <b-col class="mb-3">
-            <b-button
-              v-b-modal.select-foreground-modal
-              variant="success"
-              block
-            >
+            <b-button v-b-modal.select-foreground-modal variant="success" block>
               更换文字
             </b-button>
           </b-col>
@@ -70,6 +49,10 @@ export default class App extends Vue {
 </script>
 
 <style>
+  .container {
+    max-width: 55rem;
+  }
+
   #image-container {
     position: relative;
 

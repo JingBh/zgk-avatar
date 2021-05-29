@@ -1,8 +1,5 @@
 <template>
-  <img
-    :src="image"
-    :style="sizeStyles"
-  >
+  <img :src="image" :style="sizeStyles">
 </template>
 
 <script lang="ts">

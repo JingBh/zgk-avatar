@@ -1,9 +1,5 @@
 <template>
-  <img
-    class="rounded"
-    :src="$accessor.background"
-    :style="blurStyles"
-  >
+  <img class="rounded" :src="$accessor.background" :style="blurStyles">
 </template>
 
 <script lang="ts">
