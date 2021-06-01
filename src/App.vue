@@ -95,14 +95,17 @@ export default class App extends Vue {
       foreground.src = this.$accessor.foreground
     })
 
-    const url = canvas.toDataURL('image/jpeg')
-    if (isWechat()) {
-      this.downloadingImage = url
-      this.$bvModal.show('wechat-download')
-    } else {
-      saveAs(url, '头像.jpg')
-    }
-    window._paq.push(['trackEvent', 'Download', 'Download'])
+    canvas.toBlob((blob) => {
+      const url = URL.createObjectURL(blob)
+      if (isWechat()) {
+        this.downloadingImage = url
+        this.$bvModal.show('wechat-download')
+      } else {
+        saveAs(url, '头像.jpg')
+        URL.revokeObjectURL(blob)
+      }
+      window._paq.push(['trackEvent', 'Download', 'Download'])
+    }, 'image/jpeg')
   }
 }
 </script>

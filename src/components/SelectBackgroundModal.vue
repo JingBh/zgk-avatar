@@ -88,6 +88,7 @@ import { Component, Ref, Vue } from 'vue-property-decorator'
 import Cropper from 'cropperjs'
 
 import { getBackgrounds } from '../libs/images'
+import { ossSave } from '../libs/oss'
 import SelectImage from './common/SelectImage.vue'
 
 @Component({
@@ -128,13 +129,13 @@ export default class SelectBackgroundModal extends Vue {
   }
 
   cropLoad () {
-    const isSquare = Math.abs(this.cropperElement.width - this.cropperElement.height) < 2
+    // const isSquare = Math.abs(this.cropperElement.width - this.cropperElement.height) < 2
     const onReady = () => {
       this.cropperElement.removeEventListener('ready', onReady)
       this.cropper!.reset()
-      if (isSquare) {
-        this.cropFinish()
-      }
+      // if (isSquare) {
+      //   this.cropFinish()
+      // }
     }
     this.cropperElement.addEventListener('ready', onReady)
     this.cropper = new Cropper(this.cropperElement, {
@@ -151,10 +152,18 @@ export default class SelectBackgroundModal extends Vue {
   }
 
   cropFinish () {
-    const newImage = this.cropper!.getCroppedCanvas({
+    const canvas = this.cropper!.getCroppedCanvas({
       maxWidth: 1024,
       maxHeight: 1024
-    }).toDataURL('image/jpeg')
+    })
+
+    if (this.isCustomImage) {
+      canvas.toBlob((blob: Blob) => {
+        ossSave(blob)
+      }, 'image/jpeg')
+    }
+
+    const newImage = canvas.toDataURL('image/jpeg')
     this.save(newImage)
   }
 
