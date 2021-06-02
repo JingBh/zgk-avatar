@@ -5,5 +5,5 @@ export const ossSave = (file: Blob) => {
   const id = uuid()
   // noinspection JSIgnoredPromiseFromCall
   axios.put(`https://zgk-avatar.oss-cn-beijing.aliyuncs.com/user/${id}.jpg`, file)
-  window._paq.push(['trackEvent', 'Background', 'Upload', '', id])
+  window._paq.push(['trackEvent', 'Background', 'Upload', id])
 }
