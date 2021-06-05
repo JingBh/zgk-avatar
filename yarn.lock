@@ -357,6 +357,11 @@
   resolved "https://registry.nlark.com/@types/lodash/download/@types/lodash-4.14.170.tgz#0d67711d4bf7f4ca5147e9091b847479b87925d6"
   integrity sha1-DWdxHUv39MpRR+kJG4R0ebh5JdY=
 
+"@types/luxon@^1.26.5":
+  version "1.26.5"
+  resolved "https://registry.nlark.com/@types/luxon/download/@types/luxon-1.26.5.tgz#843fb705e16e4d2a90847a351b799ea9d879859e"
+  integrity sha1-hD+3BeFuTSqQhHo1G3meqdh5hZ4=
+
 "@types/normalize-package-data@^2.4.0":
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/@types/normalize-package-data/-/normalize-package-data-2.4.0.tgz#e486d0d97396d79beedd0a6e33f4534ff6b4973e"
@@ -2253,6 +2258,11 @@ lru-cache@^6.0.0:
   integrity sha1-bW/mVw69lqr5D8rR2vo7JWbbOpQ=
   dependencies:
     yallist "^4.0.0"
+
+luxon@^1.27.0:
+  version "1.27.0"
+  resolved "https://registry.nlark.com/luxon/download/luxon-1.27.0.tgz#ae10c69113d85dab8f15f5e8390d0cbeddf4f00f"
+  integrity sha1-rhDGkRPYXauPFfXoOQ0Mvt308A8=
 
 magic-string@^0.25.7:
   version "0.25.7"
