@@ -6,20 +6,12 @@ export const getBackgrounds = (): string[] => {
   const images: string[] = []
   const pngs = ['02-new', '14-new']
 
-  const addImage = (i: number, imageType: 'new' | 'old') => {
+  for (let i = 1; i <= 33; i++) {
     const imageNumber = padStart(i.toString(), 2, '0')
-    const imageName = `${imageNumber}-${imageType}`
+    const imageName = `${imageNumber}-new`
     const imageExt = includes(pngs, imageName) ? 'png' : 'jpg'
     const image = `${baseDir}/bg/${imageName}.${imageExt}`
     images.push(image)
-  }
-
-  for (let i = 1; i <= 33; i++) {
-    addImage(i, 'new')
-  }
-
-  for (let i = 1; i <= 13; i++) {
-    addImage(i, 'old')
   }
 
   return images
