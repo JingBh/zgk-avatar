@@ -1,128 +1,43 @@
 <template>
-  <b-container class="my-3 mt-md-5">
-    <b-row align-h="center">
-      <b-col cols="12" sm="11" md="7" class="text-center mb-3">
-        <div id="image-container">
-          <background-image />
-          <foreground-image />
-        </div>
+  <b-container class="my-5">
+    <h2 class="mb-4">
+      嗯？你现在来干嘛？
+    </h2>
+    <p>正如其名，中高考加油头像生成器只会在高考前开始开放，并在中考结束后数天内关闭。</p>
+    <hr class="my-4">
+    <h4 class="mb-4">
+      有什么想对作者说的吗？
+    </h4>
+    <b-row class="mb-4" no-gutters>
+      <b-col cols="auto">
+        <b-avatar src="https://cdn.jsdelivr.net/gh/JingBh/website/assets/images/avatar.png" size="52" />
       </b-col>
-      <b-col cols="12" sm="11" md="5" class="mb-3">
-        <b-row>
-          <b-col class="mb-3">
-            <b-button v-b-modal.select-background-modal variant="success" block>
-              更换背景
-            </b-button>
-          </b-col>
-          <b-col class="mb-3">
-            <b-button v-b-modal.select-foreground-modal variant="success" block>
-              更换文字
-            </b-button>
-          </b-col>
-        </b-row>
-        <settings class="mb-3" />
-        <b-button variant="primary" size="lg" block @click="download">
-          下载图片
-        </b-button>
+      <b-col class="pl-3">
+        <h5 class="mb-1">
+          JingBh
+        </h5>
+        <span class="text-muted">&larr; 这个 B 决定留下他的联系方式了！</span>
       </b-col>
     </b-row>
-    <welcome-modal />
-    <select-background-modal />
-    <select-foreground-modal />
-    <b-modal
-      id="wechat-download"
-      title="下载图片"
-      ok-only
-      ok-title="关闭"
-      @hidden="downloadingImage = ''"
-    >
-      <p>检测到你可能在微信中使用该网页，而微信中无法进行一键下载。<strong>请长按下面的图片保存。</strong></p>
-      <b-img fluid :src="downloadingImage" />
-    </b-modal>
+    <p>微信搜索 JingBh_ 或 Telegram 找到 <a style="color: inherit" href="https://t.me/JingBh" target="_blank">@JingBh</a> 即可</p>
+    <hr class="my-4">
+    <h4 class="mb-4">
+      或者...你是来看清华附中高清美图的？
+    </h4>
+    <p>那就很抱歉了。大量图片访问会产生不小的流量费，这也是我在非中高考期间关闭网站的原因之一。这些图片都是 THSTV 提供给我的，很感谢他们。如果你想看，也许可以找他们要？</p>
   </b-container>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { saveAs } from 'file-saver'
 
-import { isWechat } from './libs/browsers'
-import BackgroundImage from './components/BackgroundImage.vue'
-import ForegroundImage from './components/ForegroundImage.vue'
-import SelectBackgroundModal from './components/SelectBackgroundModal.vue'
-import SelectForegroundModal from './components/SelectForegroundModal.vue'
-import Settings from './components/Settings.vue'
-import WelcomeModal from './components/WelcomeModal.vue'
-
-@Component({
-  components: {
-    BackgroundImage,
-    ForegroundImage,
-    SelectBackgroundModal,
-    SelectForegroundModal,
-    Settings,
-    WelcomeModal
-  }
-})
+@Component
 export default class App extends Vue {
-  downloadingImage = ''
-
-  async download () {
-    const canvas = document.createElement('canvas')
-    canvas.width = 1024
-    canvas.height = 1024
-    const ctx = canvas.getContext('2d')!
-
-    await new Promise<void>((resolve) => {
-      const background = new Image()
-      background.crossOrigin = 'anonymous'
-      background.onload = () => {
-        ctx.drawImage(background, 0, 0, 1024, 1024)
-        resolve()
-      }
-      background.src = this.$accessor.background
-    })
-
-    await new Promise<void>((resolve) => {
-      const foreground = new Image()
-      foreground.crossOrigin = 'anonymous'
-      foreground.onload = () => {
-        const foregroundSize = 1024 * this.$accessor.foregroundSize / 100
-        const foregroundMargin = (1024 - foregroundSize) / 2
-        ctx.drawImage(foreground, foregroundMargin, foregroundMargin, foregroundSize, foregroundSize)
-        resolve()
-      }
-      foreground.src = this.$accessor.foreground
-    })
-
-    canvas.toBlob((blob) => {
-      const url = URL.createObjectURL(blob)
-      if (isWechat()) {
-        this.downloadingImage = url
-        this.$bvModal.show('wechat-download')
-      } else {
-        saveAs(url, '头像.jpg')
-        URL.revokeObjectURL(blob)
-      }
-      window._paq.push(['trackEvent', 'Download', 'Download'])
-    }, 'image/jpeg')
-  }
 }
 </script>
 
 <style>
   .container {
-    max-width: 55rem;
-  }
-
-  #image-container {
-    position: relative;
-
-    img {
-      width: 100%;
-      user-select: none;
-      top: 0;
-      left: 0;
-    }
+    max-width: 40rem;
   }
 </style>
