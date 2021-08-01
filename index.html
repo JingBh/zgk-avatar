@@ -1,29 +1,54 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="utf-8">
-    <link rel="icon" href="/favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Matomo -->
-    <script type="text/javascript">
-      var _paq = window._paq = window._paq || [];
-      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-      _paq.push(['trackPageView']);
-      _paq.push(['enableLinkTracking']);
-      _paq.push(['enableHeartBeatTimer']);
-      (function() {
-        var u="//analytics.cslab.top/";
-        _paq.push(['setTrackerUrl', u+'matomo.php']);
-        _paq.push(['setSiteId', '1']);
-        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-        g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-      })();
-    </script>
-    <!-- End Matomo Code -->
-    <title>清华附中中高考加油头像生成器</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <link rel="icon" href="/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Matomo -->
+  <script type="text/javascript">
+    var _paq = window._paq = window._paq || []
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(['trackPageView'])
+    _paq.push(['enableLinkTracking'])
+    _paq.push(['enableHeartBeatTimer']);
+    (function () {
+      var u = '//analytics.cslab.top/'
+      _paq.push(['setTrackerUrl', u + 'matomo.php'])
+      _paq.push(['setSiteId', '1'])
+      var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0]
+      g.type = 'text/javascript'
+      g.async = true
+      g.src = u + 'matomo.js'
+      s.parentNode.insertBefore(g, s)
+    })()
+  </script>
+  <!-- End Matomo Code -->
+  <title>清华附中中高考加油头像生成器</title>
+</head>
+<body>
+<div class="my-5 container">
+  <h2 class="mb-4">嗯？你现在来干嘛？</h2>
+  <p>正如其名，中高考加油头像生成器只会在高考前开始开放，并在中考结束后数天内关闭。</p>
+  <hr class="my-4">
+  <h4 class="mb-4">有什么想对作者说的吗？</h4>
+  <div class="row mb-4 no-gutters">
+    <div class="col-auto">
+      <span class="b-avatar badge-secondary rounded-circle" style="width: 52px; height: 52px;">
+        <span class="b-avatar-img">
+          <img src="https://cdn.jsdelivr.net/gh/JingBh/website/assets/images/avatar.png" alt="avatar">
+        </span>
+      </span>
+    </div>
+    <div class="pl-3 col">
+      <h5 class="mb-1">JingBh</h5>
+      <span class="text-muted">← 这个 B 决定留下他的联系方式了！</span>
+    </div>
+  </div>
+  <p>微信搜索 JingBh_ 或 Telegram 找到 <a href="https://t.me/JingBh" target="_blank" style="color: inherit;">@JingBh</a> 即可</p>
+  <hr class="my-4">
+  <h4 class="mb-4">或者...你是来看清华附中高清美图的？ </h4>
+  <p>那就很抱歉了。大量图片访问会产生不小的流量费，这也是我在非中高考期间关闭网站的原因之一。这些图片都是 THSTV 提供给我的，很感谢他们。如果你想看，也许可以找他们要？</p>
+  <script type="module" src="/src/app.scss"></script>
+</div>
+</body>
 </html>
