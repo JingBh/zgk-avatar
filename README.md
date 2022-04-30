@@ -1,5 +1,3 @@
-# 清华附中中高考加油头像生成器
+# (Archived) 清华附中中高考加油头像生成器
 
-这是我在 2020 年疫情期间受托编写的清华附中中考加油头像生成器，为 C17 级中考加油。
-
-2021 年，此项目被继续拿出来使用。由于原来的代码过于陈旧，我决定对其进行翻新。
+现已迁移到微信小程序，见 [`JingBh/zgk-avatar-miniprogram`](https://github.com/JingBh/zgk-avatar-miniprogram)。
